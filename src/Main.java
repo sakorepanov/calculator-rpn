@@ -16,7 +16,7 @@ public class Main {
 
         List<String> inputInList = new StringParser().parse(input);
         List<String> convertedToRpn = new StringParser().convertToReversePolishNote(inputInList);
-        System.out.println("Преобразование выражения в обратную польскую запись: " + convertedToRpn);
+        System.out.println("Преобразование выражения в обратную польскую запись:  " + convertedToRpn);
         double result = calculation.calculate(convertedToRpn);
         System.out.println(new InputOutput().output(result));
 
