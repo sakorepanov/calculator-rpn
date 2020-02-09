@@ -1,9 +1,11 @@
+import Exceptions.DivisionByZero;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
-public class Calculation {
-    double calculate(List<String> list) {
+class Calculation {
+    double calculate(List<String> list) throws DivisionByZero {
         Deque<Double> stack = new ArrayDeque<>();
         String operators = "+-*/";
         for (String token : list) {
@@ -25,6 +27,9 @@ public class Calculation {
                         break;
                     case 3:
                         stack.push(b/a);
+                        if (a == 0) {
+                            throw new DivisionByZero("Обнаружено деление на ноль.");
+                        }
                         break;
                 }
             }
