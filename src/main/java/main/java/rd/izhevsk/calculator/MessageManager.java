@@ -1,11 +1,12 @@
+package main.java.rd.izhevsk.calculator;
+
 import java.util.Scanner;
 
-public class InputOutput {
-    String input() {
+public class MessageManager {
+    String enterExpression() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите выражение: ");
-        String input = scanner.nextLine();
-        return input;
+        return scanner.nextLine();
     }
 
     String output(double calculation){

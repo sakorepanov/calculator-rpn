@@ -1,30 +1,21 @@
+package main.java.rd.izhevsk.calculator;
+
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringParser {
-
-    static List<String> output = new ArrayList<>();
+    private final Map<String, Operator> operatorMap = new HashMap<>();
     static Deque<String> stackForOperators = new ArrayDeque<>();
 
-    private enum Operator {
-        ADD(1), SUBTRACT(2), MULTIPLY(3), DIVIDE(4);
-        final int precedence;
-        Operator(int p) {
-            precedence = p;
-        }
+    public StringParser() {
+        operatorMap.put("+", Operator.ADD);
+        operatorMap.put("-", Operator.SUBTRACT);
+        operatorMap.put("*", Operator.MULTIPLY);
+        operatorMap.put("/", Operator.DIVIDE);
     }
 
-    private Map<String, Operator> operatorMap = new HashMap<String, Operator>() {
-        {
-            put("+", Operator.ADD);
-            put("-", Operator.SUBTRACT);
-            put("*", Operator.MULTIPLY);
-            put("/", Operator.DIVIDE);
-        }
-    };
-
-    List<String> parse(String input) {
+    public List<String> parse(String input) {
         List<String> output = new ArrayList<>();
         Pattern operand = Pattern.compile("\\d+\\.*\\d*\\s*");
         Matcher operandMatcher = operand.matcher(input);
@@ -62,5 +53,13 @@ public class StringParser {
         }
 
         return list;
+    }
+
+    private enum Operator {
+        ADD(1), SUBTRACT(2), MULTIPLY(3), DIVIDE(4);
+        final int precedence;
+        Operator(int p) {
+            precedence = p;
+        }
     }
 }
